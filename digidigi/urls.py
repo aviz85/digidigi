@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),  # Add this line
+    path('books/', include('core.urls')),  # Changed from '' to 'books/'
 ]
 
 if settings.DEBUG:

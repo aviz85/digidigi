@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFit
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
@@ -20,9 +20,9 @@ class Book(models.Model):
     available_copies = models.PositiveIntegerField(default=1)
     cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
     cover_thumbnail = ImageSpecField(source='cover',
-                                     processors=[ResizeToFill(100, 150)],
+                                     processors=[ResizeToFit(300, 450)],  # Increased size
                                      format='JPEG',
-                                     options={'quality': 60})
+                                     options={'quality': 90})  # Increased quality
 
     def __str__(self):
         return self.title
