@@ -20,12 +20,23 @@ class Book(models.Model):
     available_copies = models.PositiveIntegerField(default=1)
     cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
     cover_thumbnail = ImageSpecField(source='cover',
-                                     processors=[ResizeToFit(300, 450)],  # Increased size
+                                     processors=[ResizeToFit(300, 450)],
                                      format='JPEG',
-                                     options={'quality': 90})  # Increased quality
+                                     options={'quality': 90})
+
+    @property
+    def has_cover(self):
+        return bool(self.cover)
+
+    @property
+    def cover_thumbnail_url(self):
+        return self.cover_thumbnail.url if self.has_cover else None
 
     def __str__(self):
         return self.title
+
+    def debug_info(self):
+        return f"Book(id={self.id}, title='{self.title}', has_cover={self.has_cover}, cover_url='{self.cover.url if self.cover else 'No cover'}')"
 
 class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <div class="md:flex">
-        <div class="md:flex-shrink-0">
-            {% if book.cover %}
-                <img class="h-48 w-full object-cover md:w-48" src="{{ book.cover.url }}" alt="{{ book.title }} cover">
-            {% else %}
-                <div class="h-48 w-full md:w-48 bg-gray-300 flex items-center justify-center">
-                    <span class="text-6xl text-gray-600">📚</span>
-                </div>
-            {% endif %}
-        </div>
-        <div class="p-8">
-            <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{ book.genre }}</div>
-            <h1 class="block mt-1 text-lg leading-tight font-medium text-black">{{ book.title }}</h1>
-            <p class="mt-2 text-gray-500">By {{ book.author }}</p>
-            <p class="mt-2 text-gray-500">ISBN: {{ book.isbn }}</p>
-            <p class="mt-2 text-gray-500">Publication Date: {{ book.publication_date|date:"F d, Y" }}</p>
-            <p class="mt-2 text-gray-500">Available Copies: {{ book.available_copies }}</p>
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="md:flex">
+            <div class="md:flex-shrink-0">
+                {% if book.has_cover %}
+                    <img class="h-48 w-full object-cover md:w-48" src="{{ book.cover.url }}" alt="{{ book.title }} cover">
+                {% else %}
+                    <div class="h-48 w-full md:w-48 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <span class="text-6xl text-white">📚</span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="p-8">
+                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{ book.genre }}</div>
+                <h1 class="block mt-1 text-lg leading-tight font-medium text-black">{{ book.title }}</h1>
+                <p class="mt-2 text-gray-500">By {{ book.author }}</p>
+                <p class="mt-2 text-gray-500">ISBN: {{ book.isbn }}</p>
+                <p class="mt-2 text-gray-500">Publication Date: {{ book.publication_date|date:"F d, Y" }}</p>
+                <p class="mt-2 text-gray-500">Available Copies: {{ book.available_copies }}</p>
+                <!-- Debug info -->
+                <p class="mt-4 text-xs text-gray-400">Debug: {{ book.debug_info }}</p>
+            </div>
         </div>
     </div>
 </div>

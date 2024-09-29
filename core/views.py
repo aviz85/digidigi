@@ -18,3 +18,9 @@ class BookDetailView(DetailView):
     model = Book
     template_name = 'core/book_detail.html'
     context_object_name = 'book'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        book = self.object
+        print(book.debug_info())
+        return context

@@ -4,3 +4,11 @@ db.sqlite3
 node_modules/
 /static/css/dist/
 CACHE/
+# Ignore test cover images
+**/test_cover*.jpg
+**/test_cover*.jpeg
+**/test_cover*.png
+# Ignore test cover images in media directory
+media/**/test_cover*.jpg
+media/**/test_cover*.jpeg
+media/**/test_cover*.png
